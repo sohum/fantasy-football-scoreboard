@@ -6,7 +6,8 @@ import data.espn_api_parser as espn
 import debug
 import requests
 
-API_URL = 'http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard'
+ESPN_API_URL = 'http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard'
+SLEEPER_API_URL = 'https://api.sleeper.app/v1/state/nfl'
 
 
 class Data:
@@ -43,15 +44,15 @@ class Data:
 
     def get_season_type(self):
         # this is for that gap on espn where it's after the end of preseason, but there are like 12 days before the season starts
-        season_type = requests.get(API_URL).json()
+        season_type = requests.get(ESPN_API_URL).json()
         if season_type['season']['type'] == 2 and season_type['leagues'][0]['season']['type']['type'] != 2:
             return 'kickoff'
         else:
             return 'season'
 
     def get_week(self):
-        week_info = requests.get(API_URL).json()
-        return week_info['week']['number']
+        week_info = requests.get(SLEEPER_API_URL).json()
+        return week_info['leg']
 
     def get_current_date(self):
         # pretty dumb function but whatever
