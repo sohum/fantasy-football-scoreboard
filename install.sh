@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Installing required dependencies. This may take some time (10-20 minutes if you've got a Pi 0 like me)..."
 sudo apt-get update && sudo apt-get install python3-dev python3-pip python3-pillow libxml2-dev libxslt-dev -y
-sudo pip3 install pytz tzlocal requests datetime
+sudo pip3 install pytz tzlocal requests datetime yahoo_oauth
 echo "Running rgbmatrix installation..."
 mkdir submodules
 cd submodules
